@@ -2,6 +2,9 @@ import Transacao
 import DAO
 import Menu
 import Consulta
+import os
+import sys
+import subprocess
 
 def lancamento():
   menu = Menu.menuLancamento()
@@ -36,3 +39,5 @@ def consultarSaldo():
 def consultarExtrato():
   caminho = Consulta.extrato()
   print("Arquivo gerado em:",caminho)
+  opener ="open" if sys.platform == "darwin" else "xdg-open"
+  subprocess.call([opener, caminho])
