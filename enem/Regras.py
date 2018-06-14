@@ -31,3 +31,4 @@ def ObterNotaFinal(dados):
 
     notaFinal=notaFinal/5
     return notaFinal
+#
