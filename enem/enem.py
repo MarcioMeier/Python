@@ -65,7 +65,7 @@ for key in range(contador,contador-50,-1):
         #
         # se a lista ja tiver mais de 20 notas e a nota atual for menor que a 20ª:
         if len(lista)>20:
-            if lista.index(19)>notas[chave]:
+            if float(notas[lista[19]])>float(notas[chave]):
                 sair=True
     notasFinais={}
     #
@@ -92,4 +92,4 @@ values = [{"NU_INSCRICAO": k,"NOTA_FINAL":v} for k,v in notasFinais.items()]
 respostaFinal["answer"]=values
 #
 #print(respostaFinal)
-print(json.dumps(respostaFinal, indent=4))
+print(json.dumps(respostaFinal, indent=4,))
