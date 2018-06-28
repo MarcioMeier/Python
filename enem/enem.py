@@ -5,7 +5,7 @@ import json
 
 cwd = os.getcwd()
 
-arquivo=cwd+"\\enem\\train.csv"
+arquivo=cwd+"\\train.csv"
 
 
 notas={}
@@ -75,14 +75,15 @@ for key in range(contador,contador-50,-1):
         if len(notasFinais)==20:
             break
     #
+    # se já tiver as 20 melhores notas e a nota atual for menor que a 20º encerra o loop
+    if sair:
+        break
+	
     # se o candidato atual não estiver no dicionario recém criado significa que ele tirou uma nota inferior a todas as outras
     # ou tirou a mesma nota mas tem uma idade inferior aos outros candidatos
     if numeroInscricao not in notasFinais:
         notasFinais[numeroInscricao]=notaFinal
     #
-    # se já tiver as 20 melhores notas e a nota atual for menor que a 20º encerra o loop
-    if sair:
-        break
 #
 # monta o JSON para resposta
 respostaFinal={}
@@ -92,4 +93,4 @@ values = [{"NU_INSCRICAO": k,"NOTA_FINAL":v} for k,v in notasFinais.items()]
 respostaFinal["answer"]=values
 #
 #print(respostaFinal)
-print(json.dumps(respostaFinal, indent=4,))
+print(json.dumps(respostaFinal, indent=4))
