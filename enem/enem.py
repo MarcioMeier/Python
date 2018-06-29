@@ -93,4 +93,14 @@ values = [{"NU_INSCRICAO": k,"NOTA_FINAL":v} for k,v in notasFinais.items()]
 respostaFinal["answer"]=values
 #
 #print(respostaFinal)
-print(json.dumps(respostaFinal, indent=4))
+#print(json.dumps(respostaFinal, indent=4))
+
+print("{")
+for k,v in respostaFinal.items():
+    if k!="answer": print('\t"%s":"%s"' %(k,v))
+    else:
+        print("\tanswer:[")
+        for k2 in v:
+            print('\t\t%s'%(k2))
+        print("\t]")
+print("}")
