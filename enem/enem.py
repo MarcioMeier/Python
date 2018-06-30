@@ -5,7 +5,7 @@ import json
 
 cwd = os.getcwd()
 
-arquivo=cwd+"\\train.csv"
+arquivo=cwd+"\\enem\\train.csv"
 
 
 notas={}
@@ -95,12 +95,30 @@ respostaFinal["answer"]=values
 #print(respostaFinal)
 #print(json.dumps(respostaFinal, indent=4))
 
+i=0
+
+dadosArquivos="{\n\n"
 print("{")
 for k,v in respostaFinal.items():
-    if k!="answer": print('\t"%s":"%s"' %(k,v))
+    if k!="answer": 
+        print('\t"%s":"%s",' %(k,v)) 
+        dadosArquivos+='\t"%s":"%s",\n\n' %(k,v)
     else:
-        print("\tanswer:[")
+        print('\t"answer":[')
+        dadosArquivos+='\t"answer":[\n\n'
         for k2 in v:
-            print('\t\t%s'%(k2))
+            i+=1
+            if i==20:
+                print('\t\t%s'%(str(k2).replace("'",'"')))
+                dadosArquivos+='\t\t%s\n\n'%(str(k2).replace("'",'"'))
+            else:
+                print('\t\t%s,'%(str(k2).replace("'",'"')))
+                dadosArquivos+='\t\t%s,\n\n'%(str(k2).replace("'",'"'))
         print("\t]")
+        dadosArquivos+="\t]\n"
 print("}")
+dadosArquivos+="\n}"
+
+arquivo = open(cwd+"//enem//notasFinais.txt","w+")
+arquivo.write(dadosArquivos)
+arquivo.close()
